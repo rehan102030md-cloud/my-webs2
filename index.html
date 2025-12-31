@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy New Year My Love</title>
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+body{
+  min-height:100vh;
+  background:linear-gradient(-45deg,#ff758c,#ff7eb3,#ff9a9e,#fad0c4);
+  background-size:400% 400%;
+  animation:bgMove 12s ease infinite;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  color:white;
+  padding:10px;
+}
+@keyframes bgMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+.container{
+  width:100%;
+  max-width:650px;
+  text-align:center;
+  padding:20px;
+  z-index:5;
+}
+h1{
+  font-size:clamp(1.6rem,5vw,3rem);
+  margin-bottom:20px;
+  animation:glow 2s infinite alternate,heartbeat 2s infinite;
+}
+@keyframes heartbeat{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.06)}
+  100%{transform:scale(1)}
+}
+input{
+  width:100%;
+  max-width:320px;
+  padding:14px;
+  border-radius:30px;
+  border:none;
+  outline:none;
+  font-size:clamp(0.9rem,3vw,1rem);
+  text-align:center;
+}
+button{
+  margin-top:15px;
+  width:100%;
+  max-width:320px;
+  padding:14px;
+  border-radius:30px;
+  border:none;
+  background:#fff;
+  color:#ff4d6d;
+  font-size:clamp(0.9rem,3vw,1rem);
+  font-weight:bold;
+  cursor:pointer;
+}
+button:hover{transform:scale(1.05)}
+
+.wish{
+  display:none;
+  animation:scaleUp 1.4s ease forwards;
+}
+.wish h2{
+  font-size:clamp(1.4rem,5vw,2.6rem);
+  margin-top:20px;
+  animation:glow 2s infinite alternate;
+}
+.wish p{
+  margin-top:15px;
+  font-size:clamp(0.95rem,3.8vw,1.3rem);
+  line-height:1.6;
+}
+@keyframes glow{
+  from{text-shadow:0 0 10px #fff}
+  to{text-shadow:0 0 25px #fff,0 0 50px #ffb3c6}
+}
+
+@keyframes scaleUp{
+  from{opacity:0;transform:scale(.7)}
+  to{opacity:1;transform:scale(1)}
+}
+.heart{
+  position:absolute;
+  width:14px;
+  height:14px;
+  background:red;
+  transform:rotate(45deg);
+  animation:floatUp linear infinite;
+  opacity:.8;
+}
+.heart::before,.heart::after{
+  content:'';
+  width:14px;
+  height:14px;
+  background:red;
+  border-radius:50%;
+  position:absolute;
+}
+.heart::before{top:-7px;left:0}
+.heart::after{left:-7px;top:0}
+
+@keyframes floatUp{
+  0%{transform:translateY(110vh) rotate(45deg);opacity:1}
+  100%{transform:translateY(-10vh) rotate(45deg);opacity:0}
+}
+.butterfly{
+  position:absolute;
+  width:30px;
+  height:30px;
+  background:radial-gradient(circle at 50% 50%, #ff69b4, #ff1493);
+  border-radius:50% 50% 50% 50%;
+  transform-origin:center;
+  animation:fly linear infinite;
+  opacity:0.9;
+}
+@keyframes fly{
+  0%{transform:translate(0,0) rotate(0deg);}
+  25%{transform:translate(20vw,-15vh) rotate(20deg);}
+  50%{transform:translate(40vw,15vh) rotate(-20deg);}
+  75%{transform:translate(60vw,-10vh) rotate(10deg);}
+  100%{transform:translate(80vw,10vh) rotate(-10deg);}
+}
+
+/* Star animation */
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: twinkle linear infinite;
+}
+@keyframes twinkle {
+  0%,100%{opacity:0.2;}
+  50%{opacity:1;}
+}
+
+@media(max-width:360px){
+  .container{padding:10px}
+  h1{margin-bottom:15px}
+}
+@media(min-width:1400px){
+  .container{max-width:800px}
+}
+</style>
+</head>
+<body>
+<div class="container" id="formBox">
+  <h1>💖 For The One Who Owns My Heart 💕</h1>
+  <input type="text" id="nameInput" placeholder="Enter your name">
+  <button onclick="showWish()">See My Wish</button>
+</div>
+<div class="container wish" id="wishBox">
+  <h2 id="wishText"></h2>
+  <p>
+    This New Year, I just want to say that you are the most beautiful part of my life.
+    This year was the best year of my life, because it was the year I found you.
+    You are in my life, and that alone is why I am truly happy with my life.
+    I pray that 2025 brings us more love and more smiles.
+    May Allah always keep you with me, as my life.
+    May Allah keep you very happy with me. Ameen 🤍✨
+  </p>
+</div>
+<script>
+function showWish(){
+  const name=document.getElementById('nameInput').value.trim();
+  if(!name) return alert('Please enter your name');
+
+  document.getElementById('formBox').style.display='none';
+  document.getElementById('wishBox').style.display='block';
+  document.getElementById('wishText').innerText=`🎉 Happy New Year, ${name}! 🎉`;
+}
+
+// Heart animation
+setInterval(()=>{
+  const heart=document.createElement('div');
+  heart.className='heart';
+  heart.style.left=Math.random()*100+'vw';
+  heart.style.animationDuration=(Math.random()*4+4)+'s';
+  heart.style.background=`hsl(${Math.random()*360},80%,60%)`;
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),9000);
+},280);
+
+// Butterfly animation
+setInterval(()=>{
+  const butterfly=document.createElement('div');
+  butterfly.className='butterfly';
+  butterfly.style.left=Math.random()*100+'vw';
+  butterfly.style.top=Math.random()*80+'vh';
+  butterfly.style.animationDuration=(Math.random()*8+6)+'s';
+  butterfly.style.background=`radial-gradient(circle at 50% 50%, hsl(${Math.random()*360},70%,70%), hsl(${Math.random()*360},70%,50%))`;
+  document.body.appendChild(butterfly);
+  setTimeout(()=>butterfly.remove(),14000);
+},1000);
+
+// Star animation
+setInterval(() => {
+  const star = document.createElement('div');
+  star.className = 'star';
+  star.style.left = Math.random() * 100 + 'vw';
+  star.style.top = Math.random() * 100 + 'vh';
+  const duration = Math.random() * 2 + 1; // 1s to 3s twinkle
+  star.style.animationDuration = duration + 's';
+  document.body.appendChild(star);
+  setTimeout(() => star.remove(), 5000);
+}, 200);
+
+</script>
+</body>
+</html>
